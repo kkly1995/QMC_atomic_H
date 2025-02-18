@@ -4,12 +4,12 @@ from ase.io import write
 from ase.calculators.singlepoint import SinglePointCalculator
 
 """
-example: create an xyz file using all of the samples in qmc.hdf5
+example: create an xyz file using all of the samples in qmc.h5
 the data is already in ASE's native units
 """
 
 samples = []
-with h5py.File('qmc.hdf5', 'r') as f:
+with h5py.File('qmc.h5', 'r') as f:
     for i in range(2000): # there are 2000 samples in this dataset
         r = f['positions/'  + str(i)][...]
         cell = f['cell/'    + str(i)][...]

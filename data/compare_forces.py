@@ -13,8 +13,8 @@ WARNING: this will go through all of the forces in the QMC data,
 # here we just flatten everything
 forces_pbe = np.array([])
 forces_qmc = np.array([])
-f_pbe = h5py.File('pbe.hdf5', 'r')
-f_qmc = h5py.File('qmc.hdf5', 'r')
+f_pbe = h5py.File('pbe.h5', 'r')
+f_qmc = h5py.File('qmc.h5', 'r')
 
 index = f_pbe['selected_indices'][...]
 for i in range(2000): # 2000 samples
@@ -26,18 +26,22 @@ for i in range(2000): # 2000 samples
 difference = forces_qmc - forces_pbe
 print('RMS difference: %s' % (np.sqrt(np.mean(difference**2))))
 
-# make a fitting scatterplot
-plt.scatter(forces_qmc, forces_pbe)
-plt.xlabel('RQMC force (eV/A)')
-plt.ylabel('PBE force (eV/A)')
-# plot x = y as a guide to the eye
-x = [np.min(forces_qmc), np.max(forces_qmc)]
-plt.plot(x, x)
-plt.show()
+# uncomment below for plots, but as a warning,
+# these plots contain a large number of points,
+# and may overwhelm a smaller computer
 
-# or more interestingly, plot the difference
-plt.scatter(forces_qmc, forces_qmc - forces_pbe)
-plt.xlabel('RQMC force (eV/A)')
-plt.ylabel('RQMC force - PBE force (eV/A)')
-plt.grid() # to guide the eye
-plt.show()
+## make a fitting scatterplot
+#plt.scatter(forces_qmc, forces_pbe)
+#plt.xlabel('RQMC force (eV/A)')
+#plt.ylabel('PBE force (eV/A)')
+## plot x = y as a guide to the eye
+#x = [np.min(forces_qmc), np.max(forces_qmc)]
+#plt.plot(x, x)
+#plt.show()
+#
+## or more interestingly, plot the difference
+#plt.scatter(forces_qmc, forces_qmc - forces_pbe)
+#plt.xlabel('RQMC force (eV/A)')
+#plt.ylabel('RQMC force - PBE force (eV/A)')
+#plt.grid() # to guide the eye
+#plt.show()
