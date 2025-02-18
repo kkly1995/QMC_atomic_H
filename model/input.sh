@@ -1,0 +1,20 @@
+python /home/ly1/mace/scripts/run_train.py \
+	--name="hydrogen" \
+	--train_file="/home/ly1/H/metallic/subtracted_data/qmc/training.xyz" \
+	--valid_file="/home/ly1/H/metallic/subtracted_data/qmc/testing.xyz" \
+	--config_type_weights='{"Default":1.0}' \
+	--E0s="average" \
+	--model="MACE" \
+	--hidden_irreps='64x0e + 64x1o' \
+	--r_max=3.0 \
+	--default_dtype='float32' \
+	--batch_size=4 \
+	--valid_batch_size=4 \
+	--max_num_epochs=500 \
+	--energy_weight=1.0 \
+	--forces_weight=20.0 \
+	--ema \
+	--ema_decay=0.99 \
+	--amsgrad \
+	--restart_latest \
+	--device=cuda
